@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Copyright 2022 The Centipede Authors.
 #
@@ -107,8 +107,7 @@ function _assert_regex_in_file_impl() {
   local -r regex="$1"
   local -r file="$2"
   local -r expected_found="$3"
-  # Make the shell option change below local.
-  local -
+
   set -o pipefail
   if ! fileop ls "${file}" > /dev/null; then
     die "Expected file ${file} doesn't exist"
@@ -131,6 +130,7 @@ function _assert_regex_in_file_impl() {
       die "^^^ File ${file} contains unexpected regex /${regex}/"
     fi
   fi
+  set +o pipefail
 }
 
 # Makes sure that string "$1" exists in file "$2". Works for local and CNS.

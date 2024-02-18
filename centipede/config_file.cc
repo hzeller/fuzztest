@@ -200,7 +200,7 @@ std::filesystem::path MaybeSaveConfigToFile(
       // /path/to/centipede, so the $1 in the stub will run it.
       // 2) absl::Substitute() replaces the escaped $$ with a $.
       constexpr std::string_view kScriptStub =
-          R"(#!/bin/bash -eu
+          R"(#!/usr/bin/env -S bash -eu
 
 declare -ra flags=(
 $0)
